@@ -7,7 +7,7 @@ using namespace std;
 class IObserver
 {
 public:
-    virtual void update(string s) = 0;// { cout << "iii" << endl; }
+    virtual void update(string s) = 0;
     //bool operator == (const IObserver &);
     virtual string get_name() = 0;
 };
@@ -30,7 +30,7 @@ public:
     void notifyObserver(string content);
     
 private:
-    list<IObserver*> *observer;      //IObserver can't be an abstract class   //!!!!
+    list<IObserver*> *observer;      //need to use " IObserver* ", or it don't show the polymorphism
 };
 
 class Customer : public IObserver
@@ -66,7 +66,7 @@ void NewspaperOffice::removeObserver(IObserver *ob)
 void NewspaperOffice::notifyObserver(string content)
 {
     for (list<IObserver*>::iterator it = observer->begin(); it != observer->end(); it++)
-        (*it)->update(content);     //!!!!
+        (*it)->update(content);     //https://stackoverflow.com/questions/16183189/expression-must-have-pointer-to-class-type
 }
 
 void Customer::update(string s)
@@ -81,10 +81,12 @@ int main()
     Customer *customer_a = new Customer("jenny");
     newoff->registerObserver(customer_a);
     newoff->notifyObserver("hello");
+
     Customer *customer_b = new Customer("weber");
     newoff->registerObserver(customer_b);
     newoff->notifyObserver("hi");
     newoff->removeObserver(customer_b);  
+
     system("pause");
     return 0;
 }
