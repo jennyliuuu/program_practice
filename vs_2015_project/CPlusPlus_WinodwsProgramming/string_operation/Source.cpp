@@ -1,10 +1,11 @@
+/*
 #include <iostream>
 #include <string>
 #include <tchar.h>
 using namespace std;
 
 int main()
-{
+{*/
     /*
     // 3 way to initialize
     wchar_t wc1[11] = { 0 };
@@ -105,8 +106,9 @@ int main()
 
     wcout << wc << endl;
     */
-
+/*
     system("pause");
 
     return 0;
 }
+*/
