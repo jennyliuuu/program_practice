@@ -9,7 +9,7 @@ HANDLE hThread1 = NULL;
 HANDLE hThread2 = NULL;
 int main(int argc, char *args[])
 {
-    hEvent = CreateEvent(NULL, FALSE, TRUE, NULL); //使用手动重置为无信号状态，初始化时有信号状态
+    hEvent = CreateEvent(NULL, TRUE, TRUE, NULL); 
     hThread1 = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadProc1, NULL, 0, NULL);
     Sleep(200);
     hThread2 = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadProc2, NULL, 0, NULL);
@@ -30,7 +30,7 @@ DWORD WINAPI ThreadProc1(LPVOID lpParam)
         cout << " thread1 signaled ! " << endl;
     }
     cout << "in thread1 --signal" << endl;
-    //ResetEvent(hEvent);
+    //SetEvent(hEvent);
     return 0;
 }
 DWORD WINAPI ThreadProc2(LPVOID lpParam)
@@ -42,5 +42,6 @@ DWORD WINAPI ThreadProc2(LPVOID lpParam)
         cout << "thread2 signaled ! " << endl;
     }
     cout << "in thread2--signal" << endl;
+    //SetEvent(hEvent);
     return 0;
 }
