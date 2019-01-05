@@ -1,4 +1,4 @@
-
+// http://monkeycoding.com/?p=969
 #include <iostream>
 #include <string>
 using namespace std;
@@ -38,8 +38,10 @@ int main() {
     cout << "addr1: " << addr1 << endl;
     cout << "addr2: " << addr2 << endl;
     
-    Singleton::ResetInstance();
+    //Singleton::ResetInstance();
     
+    delete instance1;
+
     system("pause");
     return 0;
 }
